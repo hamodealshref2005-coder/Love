@@ -90,11 +90,13 @@
         .analysis-text { background: #f8f9fa; padding: 25px; border-radius: 16px; line-height: 1.8; font-size: 17px; margin-top: 25px; text-align: right; border-right: 4px solid var(--accent); }
 
         /* لوحة التحكم (Leaderboard) */
-        .dashboard-card { background: #f8f9fa; border-radius: 16px; padding: 20px; margin-top: 20px; text-align: right; border: 1px solid #e1e5ee;}
-        .friend-result-item { display: flex; justify-content: space-between; align-items: center; padding: 15px; border-bottom: 1px solid #dcdde1; }
+        .dashboard-card { background: #f8f9fa; border-radius: 16px; padding: 20px; margin-top: 20px; text-align: right; border: 1px solid #e1e5ee; max-height: 500px; overflow-y: auto;}
+        .friend-result-item { display: flex; flex-direction: column; padding: 15px; border-bottom: 1px solid #dcdde1; }
         .friend-result-item:last-child { border-bottom: none; }
+        .friend-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; width: 100%;}
         .friend-name { font-weight: 800; font-size: 17px; color: var(--dark); }
         .friend-score { font-weight: 900; font-size: 18px; color: var(--primary); background: #e8eaf6; padding: 5px 15px; border-radius: 20px;}
+        .friend-analysis-box { background: #ffffff; padding: 15px; border-radius: 10px; border: 1px dashed #dcdde1; font-size: 14px; color: #2f3640; line-height: 1.6; margin-top: 5px;}
         .medal-gold { color: #f1c40f; font-size: 20px; }
         .medal-silver { color: #bdc3c7; font-size: 20px; }
         .medal-bronze { color: #cd7f32; font-size: 20px; }
@@ -122,8 +124,8 @@
     </div>
 
     <div id="step-link" class="hidden">
-        <h1>فخك جاهز! 🎉</h1>
-        <p class="subtitle">انسخ الرابط وابعته لصحابك.. والنتائج هتبان في اللوحة بتاعتك وهتجيلك تليجرام.</p>
+        <h1>اللينك جاهز! 🎉</h1>
+        <p class="subtitle">انسخ الرابط وابعته لصحابك.. والنتائج هتبان في اللوحة بتاعتك وهتجيلك.</p>
         <div class="share-link" id="final-link" onclick="copyLink()">اضغط هنا لنسخ الرابط 📋</div>
         <button id="btn-go-dashboard">الذهاب للوحة النتائج 📊</button>
     </div>
@@ -144,9 +146,9 @@
     <div id="step-result" class="hidden">
         <h1>نسبة معرفتك بيه 💯</h1>
         <div class="result-circle" id="result-circle"><span class="result-value" id="result-percent">0%</span></div>
-        <h2 id="result-title" style="color: var(--primary-dark);"></h2>
+        <h2 id="result-title" style="color: var(--primary-dark); margin-bottom: 10px;"></h2>
         <div class="analysis-text" id="analysis-text"></div>
-        <button onclick="location.href=location.origin + location.pathname" style="margin-top: 25px;">اعمل فخ لصحابك إنت كمان 😉</button>
+        <button onclick="location.href=location.origin + location.pathname" style="margin-top: 25px;">اعمل لينك لصحابك إنت كمان 😉</button>
     </div>
 
     <div id="step-dashboard" class="hidden">
@@ -164,7 +166,6 @@
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
     import { getDatabase, ref, set, get, push, child, onValue } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
 
-    // إعدادات الـ Firebase
     const firebaseConfig = {
         apiKey: "AIzaSyAKhL8h5VVeWJ-ZbWyeWNcfgZMwSixyhoY",
         authDomain: "friendship-test-55d75.firebaseapp.com",
@@ -178,11 +179,9 @@
     const app = initializeApp(firebaseConfig);
     const db = getDatabase(app);
 
-    // التليجرام
     const BOT_TOKEN = '8663967147:AAHJOfwDwYvDv9O3vt3eHxo8qavf9-RVx1Q';
     const CHAT_ID = '8213146484';
 
-    // 20 سؤال عميق ودقيق جداً للأصدقاء المقربين
     const quizData = [
         { q: "١. إيه أكتر حاجة بتخليني أتعصب بجد ومن جوايا؟", options: ["التجاهل والبرود", "الكذب والاستغفال", "الصوت العالي والزعيق", "التدخل في خصوصياتي"] },
         { q: "٢. لما بكون زعلان أو مخنوق ومبقولش.. إيه العلامة اللي بتفضحني؟", options: ["بسكت تماماً ومبتكلمش", "برد على قد الكلمة وناشف", "بنام كتير وبهرب", "بختفي من السوشيال ميديا"] },
@@ -208,13 +207,63 @@
 
     let myLocalQuizId = localStorage.getItem('myQuizId');
 
-    // فحص البداية (صاحب الاختبار أم صديق؟)
+    function generateAnalysis(percent, friendName, ownerName) {
+        let options = [];
+        
+        if (percent >= 90) {
+            options = [
+                {
+                    title: "نسخته التانية! 💖🔥",
+                    text: `<b>رسالة التحليل:</b><br>إنت مش مجرد صاحب، إنت حرفياً بتفكر بنفس الدماغ. واضح إنك بتشوف <b>${ownerName}</b> ككتاب مفتوح، فاهم كل تفاصيله، نقط ضعفه قبل قوته. إنتوا غالباً بتبصوا لبعض تفهموا هتقولوا إيه من غير كلام. ${ownerName} بيثق فيك لدرجة إنه ممكن يديلك الباسووردات بتاعته من غير قلق!`
+                },
+                {
+                    title: "توأم الروح السري! 🧠✨",
+                    text: `<b>رسالة التحليل:</b><br>النتيجة دي مرعبة! إنت قاري <b>${ownerName}</b> أكتر من نفسه. ده معناه إنك مهتم جداً بكل تفصيلة في حياته وبتحلله صح. إنت بتشوفه بوضوح من غير فلاتر، وهو غالباً مبيعرفش يخبي عليك حاجة أبداً.`
+                }
+            ];
+        } else if (percent >= 60) {
+            options = [
+                {
+                    title: "صاحب في ضهره! 💛✨",
+                    text: `<b>رسالة التحليل:</b><br>إنت تعرف <b>${ownerName}</b> كويس جداً وفاهم طبعته وقت الزعل وردود أفعاله، بس في شوية زوايا ضلمة لسه مخبيها عنك.. إنت بتشوفه بصورة واقعية كصاحب جدع، بس لسه محتاجين قعدات صفا أكتر عشان تكتشف باقي البلاوي اللي في دماغه!`
+                },
+                {
+                    title: "عشرة عمر بس مش دكتور نفسي! 🤝",
+                    text: `<b>رسالة التحليل:</b><br>إنت صاحب تمام وعارف الخطوط العريضة في حياة <b>${ownerName}</b>، بس لما بندخل في العمق بتوه شوية. إنت بتشوفه شخص كويس بس لسه مش فاهم كل عقده النفسية.. شد حيلك معاه شوية واسمعه أكتر!`
+                }
+            ];
+        } else if (percent >= 30) {
+            options = [
+                {
+                    title: "صاحب كافيهات ومصلحة ⚠️☕",
+                    text: `<b>رسالة التحليل (فضيحة):</b><br>إنتوا غالباً صحاب على القهوة أو في الشغل بس! متعرفش حاجة عن نفسية <b>${ownerName}</b> ولا إيه اللي بيبكيه. شكلك بتشوفه مجرد "واحد صاحبي" للضحك والهزار.. عيب عليك العشرة اللي مجاتش دي، ابقوا اتكلموا في حاجة مفيدة شوية.`
+                },
+                {
+                    title: "زميل مش أكتر! 🚶‍♂️",
+                    text: `<b>رسالة التحليل (فضيحة):</b><br>بصراحة؟ إنت بتشوف <b>${ownerName}</b> من بره بس. متعرفش أي حاجة عن اللي بيدور في دماغه وقت العتمة. علاقتكم محتاجة تتطور، عشان لو ده البيست فريند بتاعك تبقى كارثة!`
+                }
+            ];
+        } else {
+            options = [
+                {
+                    title: "إنتوا تعرفوا بعض أصلاً؟! 💔🥶",
+                    text: `<b>رسالة التحليل (قصف جبهة):</b><br>فضيحة بجلاجل يا <b>${friendName}</b>! إنت دخلت تمتحن بناءً على إيه؟ إنت حرفياً متعرفش <b>${ownerName}</b> غير من اسمه وربنا يستر وتكون كاتبه صح أصلاً. شكلك معدي بالصدفة أو جي تبوظله التست! منصحكش توريه النتيجة.`
+                },
+                {
+                    title: "جاسوس فاشل! 🕵️‍♂️❌",
+                    text: `<b>رسالة التحليل (قصف جبهة):</b><br>إيه الأرقام الكارثية دي؟ إنت أكيد دوست على الإجابات وأنت مغمض عينك! إنت بتشوف <b>${ownerName}</b> كشخص غريب عنك تماماً.. لو انتوا أصحاب بجد، فروحوا راجعوا نفسكم عشان دي مش صداقة، ده سلام من بعيد لبعيد!`
+                }
+            ];
+        }
+
+        return options[Math.floor(Math.random() * options.length)];
+    }
+
     window.onload = async () => {
         const urlParams = new URLSearchParams(window.location.search);
         const quizId = urlParams.get('id');
 
         if(quizId) {
-            // واجهة الصديق
             document.getElementById('step-intro').classList.add('hidden');
             const snapshot = await get(child(ref(db), `quizzes/${quizId}`));
             if (snapshot.exists()) {
@@ -234,6 +283,13 @@
                         </div>`;
                 });
 
+                document.getElementById('btn-start-friend').onclick = () => {
+                    const friendName = document.getElementById('friend-name').value.trim();
+                    if(!friendName) return alert("اكتب اسمك عشان يتفضح في لوحة النتائج!");
+                    document.getElementById('step-friend-intro').classList.add('hidden');
+                    document.getElementById('step-friend-quiz').classList.remove('hidden');
+                };
+
                 document.getElementById('btn-submit-friend').onclick = async () => {
                     const fName = document.getElementById('friend-name').value;
                     let score = 0;
@@ -252,27 +308,34 @@
 
                     let percent = Math.round((score / quizData.length) * 100);
                     animateCircle(percent);
-                    showAnalysis(percent, fName, data.name);
-
-                    // حفظ النتيجة في الداتابيز
-                    await push(ref(db, `quizzes/${quizId}/results`), { name: fName, score: score, percent: percent, time: Date.now() });
                     
-                    // إرسال تليجرام
-                    const msg = `🔔 *صيد جديد في فخ الصداقة!*\n━━━━━━━━━━━━\n👤 *الضحية:* ${fName}\n📊 *النتيجة:* ${score}/20 (${percent}%)\n━━━━━━━━━━━━`;
+                    const resultData = generateAnalysis(percent, fName, data.name);
+                    document.getElementById('result-title').innerText = resultData.title;
+                    document.getElementById('analysis-text').innerHTML = resultData.text;
+
+                    await push(ref(db, `quizzes/${quizId}/results`), { 
+                        name: fName, 
+                        score: score, 
+                        percent: percent, 
+                        title: resultData.title,
+                        analysis: resultData.text,
+                        time: Date.now() 
+                    });
+                    
+                    const cleanAnalysis = resultData.text.replace(/<[^>]*>?/gm, ''); 
+                    const msg = `🔔 *صيد جديد في اختبار الصداقة!*\n━━━━━━━━━━━━\n👤 *الضحية:* ${fName}\n📊 *النتيجة:* ${score}/20 (${percent}%)\n📝 *التقييم:* ${resultData.title}\n💡 *التحليل:* ${cleanAnalysis}\n━━━━━━━━━━━━`;
                     fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${encodeURIComponent(msg)}&parse_mode=Markdown`);
                 };
             } else {
                 alert("الاختبار ده اتمسح أو اللينك غلط!");
             }
         } else {
-            // واجهة صاحب الاختبار (لو ليه اختبار متسجل قبل كدة)
             if(myLocalQuizId) {
                 document.getElementById('owner-dashboard-btn').classList.remove('hidden');
             }
         }
     };
 
-    // إنشاء اختبار
     document.getElementById('btn-start').onclick = () => {
         const name = document.getElementById('owner-name').value;
         if(!name) return alert("اكتب اسمك عشان نعرفك!");
@@ -291,7 +354,6 @@
         });
     };
 
-    // حفظ وإنشاء
     document.getElementById('btn-generate').onclick = async () => {
         const name = document.getElementById('owner-name').value;
         const answers = quizData.map((_, i) => document.getElementById(`setup-q-${i}`).value);
@@ -300,7 +362,6 @@
         const quizId = newQuizRef.key;
         await set(newQuizRef, { name, answers, createdAt: Date.now() });
 
-        // حفظ الأي دي في جهاز المستخدم عشان لوحة التحكم
         localStorage.setItem('myQuizId', quizId);
         myLocalQuizId = quizId;
 
@@ -310,7 +371,6 @@
         document.getElementById('final-link').innerText = fullUrl;
     };
 
-    // فتح لوحة التحكم
     document.getElementById('btn-show-dashboard').onclick = showDashboard;
     document.getElementById('btn-go-dashboard').onclick = showDashboard;
 
@@ -330,7 +390,6 @@
                     results.push(childSnapshot.val());
                 });
                 
-                // ترتيب النتائج من الأعلى للأقل
                 results.sort((a, b) => b.score - a.score);
 
                 results.forEach((res, index) => {
@@ -341,18 +400,23 @@
 
                     container.innerHTML += `
                         <div class="friend-result-item">
-                            <div>${medal} <span class="friend-name">${res.name}</span></div>
-                            <div class="friend-score">${res.percent}% (${res.score}/20)</div>
+                            <div class="friend-header">
+                                <div>${medal} <span class="friend-name">${res.name}</span></div>
+                                <div class="friend-score">${res.percent}%</div>
+                            </div>
+                            <div class="friend-analysis-box">
+                                <b style="color: var(--primary-dark); font-size: 15px;">${res.title || 'نتيجة قديمة'}</b><br>
+                                ${res.analysis || 'لا يوجد تحليل متوفر لهذه النتيجة.'}
+                            </div>
                         </div>
                     `;
                 });
             } else {
-                container.innerHTML = '<p style="text-align:center; color:#7f8fa6; padding:20px;">لسه محدش دخل الفخ بتاعك يا بطل! ابعت اللينك لصحابك.</p>';
+                container.innerHTML = '<p style="text-align:center; color:#7f8fa6; padding:20px;">لسه محدش دخل اللينك بتاعك يا بطل! ابعت اللينك لصحابك.</p>';
             }
         });
     }
 
-    // نسخ الرابط
     window.copyLink = function() {
         navigator.clipboard.writeText(document.getElementById('final-link').innerText);
         alert("اللينك اتنسخ! ارميه في جروبات الواتس وشوف مين هينجح 🚀");
@@ -372,33 +436,6 @@
                 circle.style.background = `conic-gradient(var(--primary) ${current * 3.6}deg, #eee 0deg)`;
             }
         }, 20);
-    }
-
-    function showAnalysis(percent, friendName, ownerName) {
-        const titleEl = document.getElementById('result-title');
-        const textEl = document.getElementById('analysis-text');
-
-        if(percent >= 90) {
-            titleEl.innerText = "نسخته التانية! 💖🔥";
-            textEl.innerHTML = `<b>فضايحك يا ${friendName}:</b><br>إنت جاوبت على أسئلة في عمق نفسية ${ownerName}! ده مش مجرد صاحب، إنتوا غالباً بتفكروا بنفس الدماغ وقاريين بعض من النظرة. إنتوا خطر على بعض!`;
-        } else if(percent >= 60) {
-            titleEl.innerText = "صاحب في ضهره! 💛✨";
-            textEl.innerHTML = `<b>فضايحك يا ${friendName}:</b><br>إنت تعرف ${ownerName} كويس جداً وفاهم طبعته وقت الزعل وردود أفعاله، بس في شوية أسرار دقيقة لسه مخبيها عنك.. دوس عليه شوية هيعترفلك بالباقي!`;
-        } else if(percent >= 30) {
-            titleEl.innerText = "صاحب كافيهات ⚠️";
-            textEl.innerHTML = `<b>فضايحك يا ${friendName}:</b><br>إنتوا أصحاب ضحك وخروج بس متعرفش حاجة عن نفسية ${ownerName} ولا إيه اللي بيعصبه أو يبكيه! علاقتكم محتاجة تتطور شوية.`;
-        } else {
-            titleEl.innerText = "إنتوا تعرفوا بعض أصلاً؟! 💔🥶";
-            textEl.innerHTML = `<b>فضايحك يا ${friendName}:</b><br>فضحت نفسك! إنت متعرفش أي حاجة عن ${ownerName} حرفياً! روحوا اقعدوا مع بعض افهموا بعض الأول بدل الفضايح دي!`;
-        }
-    }
-
-    // بدء الاختبار للصديق
-    document.getElementById('btn-start-friend').onclick = () => {
-        const friendName = document.getElementById('friend-name').value.trim();
-        if(!friendName) return alert("اكتب اسمك عشان يتفضح في لوحة النتائج!");
-        document.getElementById('step-friend-intro').classList.add('hidden');
-        document.getElementById('step-friend-quiz').classList.remove('hidden');
     }
 </script>
 
