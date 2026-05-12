@@ -3,90 +3,101 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>اختبار الصداقة الأصلي 🤞❤️</title>
+    <title>اختبار الصداقة العميق 🕵️‍♂️🔥</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800;900&display=swap');
         
         :root {
-            --primary: #6c5ce7;
-            --secondary: #a29bfe;
-            --dark: #2d3436;
-            --bg: #f5f6fa;
+            --primary: #4a69bd;
+            --primary-dark: #1e3799;
+            --secondary: #6a89cc;
+            --accent: #e55039;
+            --dark: #2f3640;
+            --light: #f1f2f6;
             --card-bg: #ffffff;
         }
 
-        * {
-            box-sizing: border-box;
-            font-family: 'Cairo', sans-serif;
-        }
+        * { box-sizing: border-box; font-family: 'Cairo', sans-serif; margin: 0; padding: 0; }
 
         body {
-            background-color: var(--bg);
-            background-image: linear-gradient(315deg, #a29bfe 0%, #6c5ce7 74%);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            color: var(--dark);
-            padding: 20px;
+            background-color: var(--light);
+            background-image: linear-gradient(135deg, #f1f2f6 0%, #dcdde1 100%);
+            display: flex; justify-content: center; align-items: center; min-height: 100vh;
+            color: var(--dark); padding: 20px;
         }
 
         .container {
-            background: var(--card-bg);
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
-            width: 100%;
-            max-width: 600px;
-            text-align: center;
-            animation: fadeIn 0.5s ease-in-out;
+            background: var(--card-bg); padding: 40px 30px; border-radius: 24px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08); width: 100%; max-width: 650px;
+            text-align: center; position: relative; overflow: hidden;
+            animation: slideUp 0.5s ease-out;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
 
-        h1 { color: var(--primary); font-weight: 900; font-size: 28px; margin-bottom: 10px; }
-        p.subtitle { color: #636e72; font-size: 15px; margin-bottom: 25px; }
+        h1 { color: var(--primary-dark); font-weight: 900; font-size: 32px; margin-bottom: 15px; letter-spacing: -1px; }
+        p.subtitle { color: #718093; font-size: 16px; margin-bottom: 30px; line-height: 1.6; }
 
         input[type="text"] {
-            width: 100%; padding: 15px; border: 2px solid #dfe6e9; border-radius: 12px;
-            font-size: 16px; margin-bottom: 20px; text-align: center; font-weight: bold; transition: 0.3s;
+            width: 100%; padding: 18px; border: 2px solid #dcdde1; border-radius: 14px;
+            font-size: 16px; margin-bottom: 20px; text-align: center; font-weight: 700;
+            transition: all 0.3s; background: #f8f9fa;
         }
-        input[type="text"]:focus { border-color: var(--primary); outline: none; }
+        input[type="text"]:focus { border-color: var(--primary); background: #fff; outline: none; box-shadow: 0 0 0 4px rgba(74, 105, 189, 0.1); }
 
         button {
-            background: var(--primary); color: white; border: none; padding: 15px 30px;
-            border-radius: 12px; font-size: 18px; font-weight: bold; cursor: pointer;
-            width: 100%; transition: 0.3s; box-shadow: 0 5px 15px rgba(108, 92, 231, 0.3); margin-bottom: 10px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white; border: none; padding: 18px 30px; border-radius: 14px;
+            font-size: 18px; font-weight: 800; cursor: pointer; width: 100%; transition: all 0.3s;
+            box-shadow: 0 10px 20px rgba(30, 55, 153, 0.2); margin-bottom: 15px;
         }
-        button:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(108, 92, 231, 0.4); }
+        button:hover { transform: translateY(-3px); box-shadow: 0 15px 25px rgba(30, 55, 153, 0.3); }
+        button.btn-secondary { background: #7f8fa6; box-shadow: 0 10px 20px rgba(127, 143, 166, 0.2); }
+        button.btn-secondary:hover { box-shadow: 0 15px 25px rgba(127, 143, 166, 0.3); }
 
         .hidden { display: none !important; }
 
-        .question-block { text-align: right; margin-bottom: 25px; background: #f8f9fa; padding: 20px; border-radius: 15px; border-right: 5px solid var(--primary); }
-        .question-title { font-weight: bold; font-size: 18px; margin-bottom: 15px; color: var(--dark); }
+        /* ستايل الأسئلة */
+        .question-block {
+            text-align: right; margin-bottom: 30px; background: #fff; padding: 25px;
+            border-radius: 16px; border: 1px solid #e1e5ee; box-shadow: 0 5px 15px rgba(0,0,0,0.02);
+            border-right: 6px solid var(--primary); transition: 0.3s;
+        }
+        .question-block:hover { border-color: var(--primary); transform: translateX(-5px); }
+        .question-title { font-weight: 800; font-size: 19px; margin-bottom: 20px; color: var(--dark); }
         
         select {
-            width: 100%; padding: 12px; border-radius: 10px; border: 2px solid #dfe6e9; font-size: 15px; font-weight: bold; background: white; cursor: pointer; outline: none;
+            width: 100%; padding: 15px; border-radius: 12px; border: 2px solid #dcdde1;
+            font-size: 16px; font-weight: 700; background: #f8f9fa; cursor: pointer; outline: none; transition: 0.3s;
         }
         select:focus { border-color: var(--primary); }
 
+        /* ستايل النتيجة واللوحة */
         .share-link {
-            background: #e8f4fd; padding: 15px; border-radius: 10px; word-break: break-all;
-            color: #0984e3; font-weight: bold; border: 2px dashed #74b9ff; margin: 20px 0; font-size: 14px;
+            background: #f0f3fb; padding: 20px; border-radius: 14px; word-break: break-all;
+            color: var(--primary-dark); font-weight: 800; border: 2px dashed var(--secondary);
+            margin: 20px 0; font-size: 15px; user-select: all; cursor: pointer;
         }
 
         .result-circle {
-            width: 150px; height: 150px; border-radius: 50%; background: conic-gradient(var(--primary) 0%, #eee 0%);
-            display: flex; justify-content: center; align-items: center; margin: 20px auto; font-size: 30px; font-weight: 900; position: relative;
+            width: 160px; height: 160px; border-radius: 50%; background: conic-gradient(var(--primary) 0%, #eee 0%);
+            display: flex; justify-content: center; align-items: center; margin: 30px auto;
+            font-size: 38px; font-weight: 900; position: relative; box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
-        .result-circle::after { content: ""; position: absolute; width: 120px; height: 120px; background: white; border-radius: 50%; }
-        .result-value { position: relative; z-index: 1; color: var(--dark); }
+        .result-circle::after { content: ""; position: absolute; width: 130px; height: 130px; background: white; border-radius: 50%; }
+        .result-value { position: relative; z-index: 1; color: var(--primary-dark); }
         
-        .analysis-text { background: #f1f2f6; padding: 20px; border-radius: 15px; line-height: 1.6; font-size: 16px; margin-top: 20px; text-align: right; }
+        .analysis-text { background: #f8f9fa; padding: 25px; border-radius: 16px; line-height: 1.8; font-size: 17px; margin-top: 25px; text-align: right; border-right: 4px solid var(--accent); }
+
+        /* لوحة التحكم (Leaderboard) */
+        .dashboard-card { background: #f8f9fa; border-radius: 16px; padding: 20px; margin-top: 20px; text-align: right; border: 1px solid #e1e5ee;}
+        .friend-result-item { display: flex; justify-content: space-between; align-items: center; padding: 15px; border-bottom: 1px solid #dcdde1; }
+        .friend-result-item:last-child { border-bottom: none; }
+        .friend-name { font-weight: 800; font-size: 17px; color: var(--dark); }
+        .friend-score { font-weight: 900; font-size: 18px; color: var(--primary); background: #e8eaf6; padding: 5px 15px; border-radius: 20px;}
+        .medal-gold { color: #f1c40f; font-size: 20px; }
+        .medal-silver { color: #bdc3c7; font-size: 20px; }
+        .medal-bronze { color: #cd7f32; font-size: 20px; }
     </style>
 </head>
 <body>
@@ -94,186 +105,257 @@
 <div class="container">
     
     <div id="step-intro">
-        <h1>اعرف مين بيحبك بجد! 🕵️‍♂️</h1>
-        <p class="subtitle">اعمل اختبارك الخاص (20 سؤال) وابعت الرابط لأصحابك شوف مين حافظ تفاصيلك.</p>
-        <input type="text" id="owner-name" placeholder="اكتب اسمك هنا...">
-        <button onclick="goToSetup()">إنشاء اختباري الخاص 🚀</button>
+        <h1>اختبار الصداقة العميق 🕵️‍♂️</h1>
+        <p class="subtitle">أسئلة ميعرفهاش غير اللي عايش معاك. اختبر صحابك وشوف مين حافظ تفاصيلك النفسية.</p>
+        <input type="text" id="owner-name" placeholder="اكتب اسمك للبدء...">
+        <button id="btn-start">إنشاء اختباري الخاص 🚀</button>
+        <div id="owner-dashboard-btn" class="hidden">
+            <button class="btn-secondary" id="btn-show-dashboard">📊 عرض لوحة نتائج أصحابي</button>
+        </div>
     </div>
 
     <div id="step-setup" class="hidden">
-        <h1>جهز اختبارك 🎯</h1>
-        <p class="subtitle" id="setup-subtitle"></p>
+        <h1>صمم كتالوجك 🎯</h1>
+        <p class="subtitle">اختار الإجابات اللي بتمثلك بجد بلاش مثاليات.</p>
         <div id="setup-questions-container"></div>
-        <button onclick="generateLink()">حفظ وإنشاء الرابط 🔗</button>
+        <button id="btn-generate">حفظ ونشر الاختبار 🔗</button>
     </div>
 
     <div id="step-link" class="hidden">
-        <h1>الاختبار جاهز! 🎉</h1>
-        <p class="subtitle">انسخ الرابط ده وابعتوا لأصحابك، والنتيجة هتوصلك على التليجرام.</p>
-        <div class="share-link" id="final-link"></div>
-        <button onclick="copyLink()">نسخ الرابط 📋</button>
-        <button onclick="location.href=location.pathname" style="background: var(--dark);">عمل اختبار جديد 🔄</button>
+        <h1>فخك جاهز! 🎉</h1>
+        <p class="subtitle">انسخ الرابط وابعته لصحابك.. والنتائج هتبان في اللوحة بتاعتك وهتجيلك تليجرام.</p>
+        <div class="share-link" id="final-link" onclick="copyLink()">اضغط هنا لنسخ الرابط 📋</div>
+        <button id="btn-go-dashboard">الذهاب للوحة النتائج 📊</button>
     </div>
 
     <div id="step-friend-intro" class="hidden">
         <h1 id="friend-welcome"></h1>
-        <p class="subtitle">نشوف إنت حافظه ولا بتدعي الصداقة؟ 👀 (20 سؤال)</p>
-        <input type="text" id="friend-name" placeholder="اكتب اسمك إنت الأول...">
-        <button onclick="startFriendQuiz()">يلا نبدأ 🔥</button>
+        <p class="subtitle">لو متعرفوش كويس متكملش عشان هتتفضح 👀</p>
+        <input type="text" id="friend-name" placeholder="اكتب اسمك الحقيقي...">
+        <button id="btn-start-friend">تحدي! 🔥</button>
     </div>
 
     <div id="step-friend-quiz" class="hidden">
-        <h1 id="quiz-header">اختبار الصداقة</h1>
+        <h1 id="quiz-header">الاختبار</h1>
         <div id="friend-questions-container"></div>
-        <button onclick="submitQuiz()">عرض النتيجة والتحليل 📊</button>
+        <button id="btn-submit-friend">عرض النتيجة والفضايح 📊</button>
     </div>
 
     <div id="step-result" class="hidden">
         <h1>نسبة معرفتك بيه 💯</h1>
-        <div class="result-circle" id="result-circle">
-            <span class="result-value" id="result-percent">0%</span>
-        </div>
-        <h2 id="result-title" style="color: var(--primary);"></h2>
+        <div class="result-circle" id="result-circle"><span class="result-value" id="result-percent">0%</span></div>
+        <h2 id="result-title" style="color: var(--primary-dark);"></h2>
         <div class="analysis-text" id="analysis-text"></div>
-        <button onclick="location.href=location.pathname" style="margin-top: 20px;">اعمل اختبارك إنت كمان 😉</button>
+        <button onclick="location.href=location.origin + location.pathname" style="margin-top: 25px;">اعمل فخ لصحابك إنت كمان 😉</button>
+    </div>
+
+    <div id="step-dashboard" class="hidden">
+        <h1>لوحة الفضايح 📊</h1>
+        <p class="subtitle">مين أكتر حد حافظك ومين مجرد زميل؟</p>
+        <div class="dashboard-card" id="leaderboard-container">
+            <p style="text-align:center; color:#7f8fa6;">جاري تحميل النتائج...</p>
+        </div>
+        <button onclick="location.reload()" style="margin-top: 20px;" class="btn-secondary">العودة للرئيسية 🏠</button>
     </div>
 
 </div>
 
-<script>
-    // بيانات بوت التليجرام
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+    import { getDatabase, ref, set, get, push, child, onValue } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+
+    // إعدادات الـ Firebase
+    const firebaseConfig = {
+        apiKey: "AIzaSyAKhL8h5VVeWJ-ZbWyeWNcfgZMwSixyhoY",
+        authDomain: "friendship-test-55d75.firebaseapp.com",
+        projectId: "friendship-test-55d75",
+        storageBucket: "friendship-test-55d75.firebasestorage.app",
+        messagingSenderId: "418183378659",
+        appId: "1:418183378659:web:a5a3dd1155970df0e877d6",
+        databaseURL: "https://friendship-test-55d75-default-rtdb.firebaseio.com"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+
+    // التليجرام
     const BOT_TOKEN = '8663967147:AAHJOfwDwYvDv9O3vt3eHxo8qavf9-RVx1Q';
     const CHAT_ID = '8213146484';
 
-    // بنك الأسئلة الشامل (20 سؤال بعد التعديل)
+    // 20 سؤال عميق ودقيق جداً للأصدقاء المقربين
     const quizData = [
-        { q: "١. أنا مواليد شهر إيه؟", options: ["يناير", "فبراير", "مارس", "أبريل", "مايو", "يونيو", "يوليو", "أغسطس", "سبتمبر", "أكتوبر", "نوفمبر", "ديسمبر"] },
-        { q: "٢. إيه الفصل اللي بعتبره التوب وبحس فيه إني عايش؟", options: ["الصيف والتلزيق والسهر", "الشتاء والمطر والهدوء", "الربيع وتفتيح الورد", "الخريف والهواء الساقع"] },
-        { q: "٣. إيه الأكلة اللي مش بحبها وممكن أرفض أكلها خالص؟", options: ["سمك", "مكرونة", "إندومي", "محشي", "كشري", "بيتزا"] },
-        { q: "٤. إيه أكتر صفة لو شفتها في حد بتقفلني منه وممكن أعمله بلوك؟", options: ["الكذب والتحوير", "البخل والأنانية", "التلزيق والمحن الأوفر", "الغرور والتكبر على الناس"] },
-        { q: "٥. لما بتعصب أو بتخنق بجد، بيبقى رد فعلي إيه؟", options: ["بنعزل وبقفل تليفوني ومبكلمش حد", "بعيط وأنهار وأطلع الكبت", "باكل كتير جداً أو بنام", "بتعصب وأتخانق مع دبان وشي"] },
-        { q: "٦. لو حطيت الهاند فري، غالباً المود بتاعي بيميل لأغاني إيه؟", options: ["رومانسي وحزين (هعيط)", "مهرجانات وراب (هخربها)", "أجنبي وبوب", "قديم وكلاسيك (أم كلثوم وعبدالحليم)"] },
-        { q: "٧. لو سهران قدام فيلم أو مسلسل، هختار نوع إيه؟", options: ["كوميدي ومسرحيات (عايز أضحك)", "رعب وغموض", "دراما ورومانسي", "أكشن وضرب وخيال علمي"] },
-        { q: "٨. إيه الصفة (التوكسيك) اللي فيا وبعترف بيها؟", options: ["العند والدماغ الناشفة", "الغيرة الأوفر والتملك", "المزاجية (ممكن أتقلب في ثانية)", "البرود والتطنيش فجأة"] },
-        { q: "٩. إيه الكلمة أو اللزمة اللي دايماً بتلاقيني بقولها؟", options: ["يعم فكك / كبر دماغك", "بجد والله؟ / بتهزر!", "لول / عبث / هيييييح / كخ", "حرفياً / فاهم قصدي"] },
-        { q: "١٠. لو معايا فلوس زيادة، غالباً بضيعها على إيه؟", options: ["الأكل والخروجات والدليفري", "اللبس والميكب/الشياكة", "الإلكترونيات والجيمنج", "بحوشهم ومبصرفهمش بسهولة"] },
-        { q: "١١. إيه أكتر حاجة بتخليني أحس إن اللي قدامي بيحبني بجد؟", options: ["الكلام الحلو والاهتمام بتفاصيلي", "المفاجآت والهدايا", "يقف جنبي في المواقف الصعبة", "يهزر معايا ونضحك من قلبنا"] },
-        { q: "١٢. لو هخرج، إيه نوع الخروجة اللي تظبط مزاجي؟", options: ["قعدة رايقة على البحر أو نيل", "دوشة كافيهات وزحمة ولمة", "أروح سينما أو مول أعمل شوبينج", "أفضل في البيت تحت البطانية أصلاً"] },
-        { q: "١٣. أول حاجة بعملها لما أفتح عيني من النوم؟", options: ["بمسك الموبايل أفتح واتس وتيك توك", "بقوم أعمل قهوة أو شاي فوراً", "بقوم مخضوض عشان متأخر على حاجة", "بفضل باصص للسقف نص ساعة أستوعب"] },
-        { q: "١٤. علاقتي بالنوم والسهر عاملة إزاي؟", options: ["كائن ليلي بسهر للفجر دايماً", "بنام بدري وبصحى بدري (روتين)", "نومي ملخبط وعشوائي جداً", "عندي قدرة أنام في أي وقت وأي مكان"] },
-        { q: "١٥. وسط شلتي أو أصحابي، أنا بعتبر مين؟", options: ["العاقل اللي بيحل المشاكل وبيسمعهم", "المهرج اللي بيضحكهم وبيعمل مصايب", "المكتئب اللي دايماً بيشكي همه", "الشبح اللي بيختفي ويظهر فجأة"] },
-        { q: "١٦. إيه أكتر حاجة بترعبني أو بعملها ألف حساب؟", options: ["الفقد وإن حد بحبه يبعد عني", "الفشل وإن شكلي يبقى وحش", "الحشرات والزواحف والأماكن العالية", "الخيانة أو إن حد يغدر بيا"] },
-        { q: "١٧. لو جاتلي فرصة أسافر بكرا، هختار جو عامل إزاي؟", options: ["طبيعة وجبال وبلد أوروبية ساقعة", "بحر وجزر (زي المالديف أو بالي)", "بلد عربية فيها شغل وفلوس", "مدن زحمة وأضواء (زي نيويورك)"] },
-        { q: "١٨. لما بكتئب، إيه الروتين الغريب اللي ممكن أعمله؟", options: ["أشغل أغاني وأقعد أعيط في الضلمة", "أهتم بشكلي أوي فجأة (ميك أب/لبس/حلاقة)", "أنزل أمشي في الشارع لوحدي من غير هدف", "أفتعل مشكلة مع أي حد في البيت"] },
-        { q: "١٩. لو حد أذاني أو زعلني جامد، بتعامل إزاي؟", options: ["بمسك فيه وأرد اعتباري في وقتها", "بسامحه لو اعتذر بس مبنساش", "بعمله بلوك وبمسحه من حياتي كأنه لم يكن", "بستنى الفرصة وأردله الضربة أضعاف"] },
-        { q: "٢٠. إيه أكتر حاجة بتمناها أو بتسعدني في الحياة عموماً؟", options: ["راحة البال والهدوء المادي", "ألاقي الشخص اللي يفهمني صح", "أنجح في شغلي وأحقق ذاتي", "أعيش حر من غير قيود ومسؤوليات"] }
+        { q: "١. إيه أكتر حاجة بتخليني أتعصب بجد ومن جوايا؟", options: ["التجاهل والبرود", "الكذب والاستغفال", "الصوت العالي والزعيق", "التدخل في خصوصياتي"] },
+        { q: "٢. لما بكون زعلان أو مخنوق ومبقولش.. إيه العلامة اللي بتفضحني؟", options: ["بسكت تماماً ومبتكلمش", "برد على قد الكلمة وناشف", "بنام كتير وبهرب", "بختفي من السوشيال ميديا"] },
+        { q: "٣. إيه أكتر صفة فيا أنا نفسي بكرها ومش عارف أغيرها؟", options: ["العصبية السريعة", "الكسل والتسويف", "الغيرة أو التملك", "طيبة قلبي اللي بتستغل"] },
+        { q: "٤. لو اتحطيت في موقف محرج جداً وسط ناس.. هتصرف إزاي؟", options: ["هقلبها ضحك وتريقة على نفسي", "هسكت وأتكسف وشي يحمر", "هتعصب وأقلب الترابيزة", "هنسحب وأمشي من المكان"] },
+        { q: "٥. إيه أكتر كلمة أو جملة بستفز بيها الناس لما أحب أضايقهم؟", options: ["براحتك", "أها.. طيب", "ممم.. ماشي", "نظرة برود من غير كلام"] },
+        { q: "٦. إيه أكتر فوبيا أو حاجة بخاف منها رعب؟", options: ["الحشرات والزواحف", "المرتفعات والأماكن العالية", "الفقد وموت حد بحبه", "المستقبل والمجهول"] },
+        { q: "٧. أنا من النوع اللي في الفلوس بكون..؟", options: ["حريص وبحوش للمستقبل", "مبهميش وبصرف على مزاجي والأكل", "كريم جداً مع اللي بحبهم", "بضيعها على حاجات تافهة بندم عليها"] },
+        { q: "٨. إيه أكتر تصرف لو عملته معايا مستحيل أسامحك أو أرجع زي الأول؟", options: ["الخيانة أو الغدر", "إنك تقلل مني قدام حد", "تستغل نقطة ضعفي", "تفشي سري وتتكلم في ضهري"] },
+        { q: "٩. لو ههرب من ضغوطات الحياة يومين.. هروح فين؟", options: ["بحر ومكان هادي لوحدي", "أنعزل في أوضتي وأقفل الفون", "أخرج مع أقرب حد لقلبي وأرغي", "ألعب جيمز أو أتفرج على أفلام كتير"] },
+        { q: "١٠. إيه أسوأ ذكرى أو فترة في حياتي مابحبش أفتكرها؟", options: ["فترة مرض أو تعب جسدي", "فشل في دراسة أو شغل", "علاقة توكسيك طلعت منها", "مشاكل وعقد قديمة"] },
+        { q: "١١. أنا بعبر عن حبي للي قدامي إزاي بجد؟", options: ["بالكلام الحلو والاهتمام", "بالأفعال وإني أقف جنبه وقت الجد", "بالهدايا والمفاجآت", "بالهزار والرغي معاه طول الوقت"] },
+        { q: "١٢. لو حد سألني 'نفسك في إيه دلوقتي؟' والإجابة من قلبي هتكون؟", options: ["فلوس كتير وأسافر", "راحة بال وأنام من غير تفكير", "شخص يفهمني ويطبطب عليا", "أنجح في الحاجة اللي بسعالها"] },
+        { q: "١٣. إيه أكتر حاجة ممكن تخليني أعيط وتكسر قلبي؟", options: ["إحساس الظلم", "أشوف حد من أهلي زعلان/تعبان", "الوحدة وإن محدش حاسس بيا", "ذكريات وحاجات كان نفسي فيها ومحصلتش"] },
+        { q: "١٤. مين أكتر شخص برتاح في الفضفضة معاه؟", options: ["البيست فريند بتاعي", "حد من أهلي", "محدش.. بكتب أو بكلم نفسي", "حد غريب ميعرفنيش"] },
+        { q: "١٥. إيه العادة الغريبة أو السر اللي بعمله وأنا لوحدي؟", options: ["بكلم نفسي في المراية وبمثل", "بأوفر ثينك في سيناريوهات مستحيلة", "براقب ناس في صمت وبحللهم", "باكل حاجات غريبة أو بشكل غريب"] },
+        { q: "١٦. لو حد اتقدملي/أو ارتبطت.. إيه أول حاجة هبص عليها فيه؟", options: ["دماغه وعقليته", "شكله واهتمامه بنفسه", "طريقة كلامه وحنيته", "طموحه ومستقبله"] },
+        { q: "١٧. إيه أكتر حلم يقظة بسرح فيه كتير؟", options: ["أكون غني ومشهور", "أعيش قصة حب أسطورية", "أنتقم من كل اللي أذوني", "أختفي في مكان محدش يعرفني فيه"] },
+        { q: "١٨. وقت الخناقة الكبيرة.. أنا بكون الطرف الـ..؟", options: ["اللي بيشتم ويخرب الدنيا وبعدين يندم", "اللي بيسكت ويبصلك بقرف ويمشي", "اللي بيعيط من كتر العصبية ومش عارف يتكلم", "اللي بيجيب أخطاء الماضي كلها ويحاسبك"] },
+        { q: "١٩. إيه نقطة ضعفي اللي مبحبش حد يستغلها؟", options: ["خوفي على زعل اللي بحبهم", "تسامحي الزايد", "عاطفتي وتأثري السريع", "عدم قدرتي على قول 'لأ' في بعض المواقف"] },
+        { q: "٢٠. في النهاية.. أنا كشخص من جوايا شايف نفسي إزاي؟", options: ["مظلوم والناس مش فاهمني", "شخص قوي ومحارب", "طيب بزيادة وده تاعبني", "مجنون ومودي بس قلبي أبيض"] }
     ];
 
-    let ownerAnswers = [];
-    let ownerName = "";
+    let myLocalQuizId = localStorage.getItem('myQuizId');
 
-    function goToSetup() {
-        ownerName = document.getElementById('owner-name').value.trim();
-        if(!ownerName) return alert("يا عم اكتب اسمك الأول!");
+    // فحص البداية (صاحب الاختبار أم صديق؟)
+    window.onload = async () => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const quizId = urlParams.get('id');
 
-        document.getElementById('step-intro').classList.add('hidden');
-        document.getElementById('step-setup').classList.remove('hidden');
-        document.getElementById('setup-subtitle').innerText = `يا ${ownerName}، اختار الإجابات اللي بتعبر عنك بجد عشان نختبر صحابك.`;
-
-        const container = document.getElementById('setup-questions-container');
-        quizData.forEach((item, index) => {
-            let optionsHTML = item.options.map(opt => `<option value="${opt}">${opt}</option>`).join('');
-            container.innerHTML += `
-                <div class="question-block">
-                    <div class="question-title">${item.q}</div>
-                    <select id="setup-q-${index}">${optionsHTML}</select>
-                </div>`;
-        });
-    }
-
-    function generateLink() {
-        let answers = [];
-        quizData.forEach((_, index) => {
-            answers.push(document.getElementById(`setup-q-${index}`).value);
-        });
-
-        const dataObj = { name: ownerName, ans: answers };
-        const encodedData = btoa(unescape(encodeURIComponent(JSON.stringify(dataObj))));
-        
-        const fullUrl = window.location.origin + window.location.pathname + '?q=' + encodedData;
-
-        document.getElementById('step-setup').classList.add('hidden');
-        document.getElementById('step-link').classList.remove('hidden');
-        document.getElementById('final-link').innerText = fullUrl;
-    }
-
-    function copyLink() {
-        navigator.clipboard.writeText(document.getElementById('final-link').innerText);
-        alert("تم نسخ الرابط! ابعته لصحابك دلوقتي 🚀");
-    }
-
-    window.onload = function() {
-        const params = new URLSearchParams(window.location.search);
-        const rawData = params.get('q');
-
-        if(rawData) {
+        if(quizId) {
+            // واجهة الصديق
             document.getElementById('step-intro').classList.add('hidden');
-            document.getElementById('step-friend-intro').classList.remove('hidden');
-
-            try {
-                const decodedData = JSON.parse(decodeURIComponent(escape(atob(rawData))));
-                ownerName = decodedData.name;
-                ownerAnswers = decodedData.ans;
+            const snapshot = await get(child(ref(db), `quizzes/${quizId}`));
+            if (snapshot.exists()) {
+                const data = snapshot.val();
+                document.getElementById('step-friend-intro').classList.remove('hidden');
+                document.getElementById('friend-welcome').innerText = `اختبار عن ${data.name} 🕵️‍♂️`;
                 
-                document.getElementById('friend-welcome').innerText = `اختبار عن ${ownerName} 🕵️‍♂️`;
-            } catch(e) {
-                alert("الرابط ده بايظ أو ناقص!");
+                const container = document.getElementById('friend-questions-container');
+                quizData.forEach((item, i) => {
+                    container.innerHTML += `
+                        <div class="question-block">
+                            <div class="question-title">${item.q}</div>
+                            <select id="friend-q-${i}">
+                                <option disabled selected>اختار الإجابة المتوقعة...</option>
+                                ${item.options.map(o=>`<option value="${o}">${o}</option>`).join('')}
+                            </select>
+                        </div>`;
+                });
+
+                document.getElementById('btn-submit-friend').onclick = async () => {
+                    const fName = document.getElementById('friend-name').value;
+                    let score = 0;
+                    let isComplete = true;
+
+                    quizData.forEach((_, i) => {
+                        const val = document.getElementById(`friend-q-${i}`).value;
+                        if(val === "اختار الإجابة المتوقعة...") isComplete = false;
+                        if(val === data.answers[i]) score++;
+                    });
+
+                    if(!isComplete) return alert("الهروب مش هينفعك.. جاوب الـ 20 سؤال!");
+
+                    document.getElementById('step-friend-quiz').classList.add('hidden');
+                    document.getElementById('step-result').classList.remove('hidden');
+
+                    let percent = Math.round((score / quizData.length) * 100);
+                    animateCircle(percent);
+                    showAnalysis(percent, fName, data.name);
+
+                    // حفظ النتيجة في الداتابيز
+                    await push(ref(db, `quizzes/${quizId}/results`), { name: fName, score: score, percent: percent, time: Date.now() });
+                    
+                    // إرسال تليجرام
+                    const msg = `🔔 *صيد جديد في فخ الصداقة!*\n━━━━━━━━━━━━\n👤 *الضحية:* ${fName}\n📊 *النتيجة:* ${score}/20 (${percent}%)\n━━━━━━━━━━━━`;
+                    fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${encodeURIComponent(msg)}&parse_mode=Markdown`);
+                };
+            } else {
+                alert("الاختبار ده اتمسح أو اللينك غلط!");
+            }
+        } else {
+            // واجهة صاحب الاختبار (لو ليه اختبار متسجل قبل كدة)
+            if(myLocalQuizId) {
+                document.getElementById('owner-dashboard-btn').classList.remove('hidden');
             }
         }
     };
 
-    function startFriendQuiz() {
-        const friendName = document.getElementById('friend-name').value.trim();
-        if(!friendName) return alert("اكتب اسمك عشان " + ownerName + " يعرف مين جاوب!");
-
-        document.getElementById('step-friend-intro').classList.add('hidden');
-        document.getElementById('step-friend-quiz').classList.remove('hidden');
-        document.getElementById('quiz-header').innerText = `بتعرف ${ownerName} قد إيه؟`;
-
-        const container = document.getElementById('friend-questions-container');
-        quizData.forEach((item, index) => {
-            let optionsHTML = item.options.map(opt => `<option value="${opt}">${opt}</option>`).join('');
+    // إنشاء اختبار
+    document.getElementById('btn-start').onclick = () => {
+        const name = document.getElementById('owner-name').value;
+        if(!name) return alert("اكتب اسمك عشان نعرفك!");
+        document.getElementById('step-intro').classList.add('hidden');
+        document.getElementById('step-setup').classList.remove('hidden');
+        
+        const container = document.getElementById('setup-questions-container');
+        quizData.forEach((item, i) => {
             container.innerHTML += `
                 <div class="question-block">
                     <div class="question-title">${item.q}</div>
-                    <select id="friend-q-${index}">
-                        <option value="" disabled selected>اختار الإجابة...</option>
-                        ${optionsHTML}
+                    <select id="setup-q-${i}">
+                        ${item.options.map(o=>`<option value="${o}">${o}</option>`).join('')}
                     </select>
                 </div>`;
         });
+    };
+
+    // حفظ وإنشاء
+    document.getElementById('btn-generate').onclick = async () => {
+        const name = document.getElementById('owner-name').value;
+        const answers = quizData.map((_, i) => document.getElementById(`setup-q-${i}`).value);
+        
+        const newQuizRef = push(ref(db, 'quizzes'));
+        const quizId = newQuizRef.key;
+        await set(newQuizRef, { name, answers, createdAt: Date.now() });
+
+        // حفظ الأي دي في جهاز المستخدم عشان لوحة التحكم
+        localStorage.setItem('myQuizId', quizId);
+        myLocalQuizId = quizId;
+
+        const fullUrl = window.location.origin + window.location.pathname + '?id=' + quizId;
+        document.getElementById('step-setup').classList.add('hidden');
+        document.getElementById('step-link').classList.remove('hidden');
+        document.getElementById('final-link').innerText = fullUrl;
+    };
+
+    // فتح لوحة التحكم
+    document.getElementById('btn-show-dashboard').onclick = showDashboard;
+    document.getElementById('btn-go-dashboard').onclick = showDashboard;
+
+    function showDashboard() {
+        document.getElementById('step-intro').classList.add('hidden');
+        document.getElementById('step-link').classList.add('hidden');
+        document.getElementById('step-dashboard').classList.remove('hidden');
+
+        const resultsRef = ref(db, `quizzes/${myLocalQuizId}/results`);
+        onValue(resultsRef, (snapshot) => {
+            const container = document.getElementById('leaderboard-container');
+            container.innerHTML = '';
+            
+            if (snapshot.exists()) {
+                const results = [];
+                snapshot.forEach(childSnapshot => {
+                    results.push(childSnapshot.val());
+                });
+                
+                // ترتيب النتائج من الأعلى للأقل
+                results.sort((a, b) => b.score - a.score);
+
+                results.forEach((res, index) => {
+                    let medal = '';
+                    if(index === 0) medal = '<span class="medal-gold">🥇</span>';
+                    else if(index === 1) medal = '<span class="medal-silver">🥈</span>';
+                    else if(index === 2) medal = '<span class="medal-bronze">🥉</span>';
+
+                    container.innerHTML += `
+                        <div class="friend-result-item">
+                            <div>${medal} <span class="friend-name">${res.name}</span></div>
+                            <div class="friend-score">${res.percent}% (${res.score}/20)</div>
+                        </div>
+                    `;
+                });
+            } else {
+                container.innerHTML = '<p style="text-align:center; color:#7f8fa6; padding:20px;">لسه محدش دخل الفخ بتاعك يا بطل! ابعت اللينك لصحابك.</p>';
+            }
+        });
     }
 
-    function submitQuiz() {
-        const friendName = document.getElementById('friend-name').value.trim();
-        let score = 0;
-        let isComplete = true;
-
-        quizData.forEach((_, index) => {
-            const val = document.getElementById(`friend-q-${index}`).value;
-            if(!val) isComplete = false;
-            if(val === ownerAnswers[index]) score++;
-        });
-
-        if(!isComplete) return alert("جاوب على كل الـ 20 سؤال متسيبش حاجة فاضية!");
-
-        document.getElementById('step-friend-quiz').classList.add('hidden');
-        document.getElementById('step-result').classList.remove('hidden');
-
-        let percent = Math.round((score / quizData.length) * 100);
-        animateCircle(percent);
-        showAnalysis(percent, friendName);
-        sendToTelegram(friendName, score, percent);
+    // نسخ الرابط
+    window.copyLink = function() {
+        navigator.clipboard.writeText(document.getElementById('final-link').innerText);
+        alert("اللينك اتنسخ! ارميه في جروبات الواتس وشوف مين هينجح 🚀");
     }
 
     function animateCircle(targetPercent) {
@@ -292,29 +374,31 @@
         }, 20);
     }
 
-    function showAnalysis(percent, friendName) {
+    function showAnalysis(percent, friendName, ownerName) {
         const titleEl = document.getElementById('result-title');
         const textEl = document.getElementById('analysis-text');
 
         if(percent >= 90) {
-            titleEl.innerText = "توأم روحه! 💖🔥";
-            textEl.innerHTML = `<b>تحليل نتيجتك يا ${friendName}:</b><br>إنت جاوبت على أسئلة عميقة جداً ومغلطتش غير في حاجات بسيطة! إنت حافظ ${ownerName} أكتر من نفسه! عارف تفاصيله الصغيره، روتينه، جنانه، وحركاته. العلاقة دي مش مجرد صداقة، دي عشرة عمر وفاهمين بعض من نظرة عين. عاش جداً!`;
+            titleEl.innerText = "نسخته التانية! 💖🔥";
+            textEl.innerHTML = `<b>فضايحك يا ${friendName}:</b><br>إنت جاوبت على أسئلة في عمق نفسية ${ownerName}! ده مش مجرد صاحب، إنتوا غالباً بتفكروا بنفس الدماغ وقاريين بعض من النظرة. إنتوا خطر على بعض!`;
         } else if(percent >= 60) {
-            titleEl.innerText = "صاحب جدع وأصيل! 💛✨";
-            textEl.innerHTML = `<b>تحليل نتيجتك يا ${friendName}:</b><br>إنت تعرف ${ownerName} كويس جداً، بس في شوية تفاصيل دقيقة سقطت منك. بشكل عام إنتوا قريبين من بعض وفاهمين دماغ بعض في المواقف الكبيرة. محتاج تركز معاه شوية كمان عشان تقفل اللعبة!`;
+            titleEl.innerText = "صاحب في ضهره! 💛✨";
+            textEl.innerHTML = `<b>فضايحك يا ${friendName}:</b><br>إنت تعرف ${ownerName} كويس جداً وفاهم طبعته وقت الزعل وردود أفعاله، بس في شوية أسرار دقيقة لسه مخبيها عنك.. دوس عليه شوية هيعترفلك بالباقي!`;
         } else if(percent >= 30) {
-            titleEl.innerText = "معرفة سطحية ⚠️";
-            textEl.innerHTML = `<b>تحليل نتيجتك يا ${friendName}:</b><br>يا دوبك تعرف قشور عن ${ownerName}. أسئلة الشخصية العميقة وقعتك! علاقتكم محتاجة تتطور أكتر وتقعدوا مع بعض تتكلموا في تفاصيل أكتر. إنتوا حالياً في خانة "الزمايل" مش الصحاب الانتيم!`;
+            titleEl.innerText = "صاحب كافيهات ⚠️";
+            textEl.innerHTML = `<b>فضايحك يا ${friendName}:</b><br>إنتوا أصحاب ضحك وخروج بس متعرفش حاجة عن نفسية ${ownerName} ولا إيه اللي بيعصبه أو يبكيه! علاقتكم محتاجة تتطور شوية.`;
         } else {
-            titleEl.innerText = "إنت جيت هنا صدفة؟! 💔🥶";
-            textEl.innerHTML = `<b>تحليل نتيجتك يا ${friendName}:</b><br>إنت متعرفش أي حاجة عن ${ownerName} حرفياً! إنت بتجاوب بالبركة أو لسه متعرفين على بعض إمبارح. روح اتعرف عليه الأول وافهم دماغه بدل الفضايح دي!`;
+            titleEl.innerText = "إنتوا تعرفوا بعض أصلاً؟! 💔🥶";
+            textEl.innerHTML = `<b>فضايحك يا ${friendName}:</b><br>فضحت نفسك! إنت متعرفش أي حاجة عن ${ownerName} حرفياً! روحوا اقعدوا مع بعض افهموا بعض الأول بدل الفضايح دي!`;
         }
     }
 
-    function sendToTelegram(friendName, score, percent) {
-        const msg = `🔔 *نتيجة اختبار صداقة جديدة!*\n━━━━━━━━━━━━\n👤 *صاحب الاختبار:* ${ownerName}\n👥 *اللي جاوب:* ${friendName}\n📊 *النتيجة:* ${score} من ${quizData.length} (${percent}%)\n━━━━━━━━━━━━`;
-        fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${encodeURIComponent(msg)}&parse_mode=Markdown`)
-        .catch(err => console.error("Error sending to telegram"));
+    // بدء الاختبار للصديق
+    document.getElementById('btn-start-friend').onclick = () => {
+        const friendName = document.getElementById('friend-name').value.trim();
+        if(!friendName) return alert("اكتب اسمك عشان يتفضح في لوحة النتائج!");
+        document.getElementById('step-friend-intro').classList.add('hidden');
+        document.getElementById('step-friend-quiz').classList.remove('hidden');
     }
 </script>
 
